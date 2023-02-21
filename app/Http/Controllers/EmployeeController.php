@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -107,6 +108,9 @@ class EmployeeController extends Controller {
 		$empData = ['first_name' => $request->fname, 'last_name' => $request->lname,  'dni' => $request->dni, 'email' => $request->email, 'phone' => $request->phone, 'office' => $request->office, 'employeepos' => $request->employeepos, 'avatar' => $fileName];
 
 		$emp->update($empData);
+
+		Device::where('employee_id', $request->emp_id)->update(['employee'=>$request->fname.' '. $request->lname]);
+		
 		return response()->json([
 			'status' => 200,
 		]);

@@ -415,7 +415,7 @@
                 'Hecho'
               )
               fetchAllEmployeesJson();
-
+              fetchAllDevices();
             }
             $("#edit_employee_btn").text('Actualizar Empleado');
             $("#edit_employee_form")[0].reset();
@@ -486,6 +486,7 @@
           url: '{{ route('fetchAllEmployeesJson') }}',
           method: 'get',
           success: function(response) {
+            $(".employee-select").html('');
             $(".employee-select").append(response);
           }
         });
